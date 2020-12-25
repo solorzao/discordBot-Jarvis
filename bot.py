@@ -36,12 +36,12 @@ async def on_member_join(member):
     )
 
 
-@bot.event
-async def on_message(message):
-    if message.author == bot.user:
+@bot.command(name='roast_me', help='Jarvis coming in hot to roast you')
+async def roast_initiated(ctx):
+    if ctx.author == bot.user:
         return
 
-    name = message.author.mention
+    name = ctx.author.mention
 
     roasts = [
         f'It’s nice to see such a diverse crowd here today. We’ve got Indians, Jews, Whites, and whatever the fuck {name} is.', 
@@ -59,12 +59,9 @@ async def on_message(message):
         f'{name} if I had a gun, with two bullets, and I was in a room with Hitler, Bin Laden and you, I would shoot you twice.'
     ]
 
-    if message.content == 'roast me!':
-        response = random.choice(roasts)
-        await message.channel.send(response)
+    response = random.choice(roasts)
+    await ctx.channel.send(response)
 
-    elif message.content == 'raise-exception':
-        raise discord.DiscordException
 
 @bot.event
 async def on_error(event, *args, **kwargs):
