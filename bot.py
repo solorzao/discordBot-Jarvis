@@ -36,7 +36,7 @@ async def on_member_join(member):
     )
 
 
-@bot.command(name='roast_me', help='Jarvis coming in hot to roast you')
+@bot.command(name='roast_me', help='Jarvis coming in hot to roast you.')
 async def roast_initiated(ctx):
     if ctx.author == bot.user:
         return
@@ -62,6 +62,36 @@ async def roast_initiated(ctx):
     response = random.choice(roasts)
     await ctx.channel.send(response)
 
+
+@bot.command(name='roll_dice', help='Simulates rolling dice.')
+async def roll(ctx, number_of_dice: int, number_of_sides: int):
+    dice = [
+        str(random.choice(range(1, number_of_sides + 1)))
+        for _ in range(number_of_dice)
+    ]
+    await ctx.send(', '.join(dice))
+
+
+@bot.command(name='create-channel')
+@commands.has_role('admin')
+async def create_channel(ctx, channel_name='real-python'):
+    guild = ctx.guild
+    existing_channel = discord.utils.get(guild.channels, name=channel_name)
+    if not existing_channel:
+        print(f'Creating a new channel: {channel_name}')
+        await guild.create_text_channel(channel_name)
+
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.errors.CheckFailure):
+        await ctx.send('You do not have the correct role for this command.')
+
+@bot.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+    if 'hello' in message.content.lower():
+        await message.channel.send(f'Hello! {message.author.mention}')
 
 @bot.event
 async def on_error(event, *args, **kwargs):
