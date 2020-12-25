@@ -42,12 +42,21 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    name = message.author.name
+
     roasts = [
-        f'A little known fact is that a long time ago @{message.author.name} used to work at McDonald’s. It was the last time anyone said about your work, “I’m lovin’ it.”',
-        f'We are doing this roast tonight to help @{message.author.name} live out one of his sexual fantasies, to have a room full of his friends shit all over him.',
-        f'It’s nice to see such a diverse crowd here today. We’ve got Indians, Jews, Whites, and whatever the fuck @{message.author.name} is.', 
-        f'@{message.author.name} you’re looking pretty rough this evening. @{message.author.name} looks like if sweatpants were a person.', 
-        f'@{message.author.name} if laughter is the best medicine, your face must be curing the world.'
+        f'It’s nice to see such a diverse crowd here today. We’ve got Indians, Jews, Whites, and whatever the fuck @{name} is.', 
+        f'@{name} you\'re looking pretty rough this evening. @{name} looks like if sweatpants were a person.', 
+        f'@{name} you\'re my favorite person besides every other person I\'ve ever met.', 
+        f'@{name} I envy people who have never met you.', 
+        f'@{name} if you were an inanimate object, you’d be a participation trophy.', 
+        f'@{name} you are a pizza burn on the roof of the world\'s mouth.',
+        f'@{name} if genius skips a generation, your children will be brilliant.',
+        f'@{name} you have the charm and charisma of a burning orphanage.',
+        f'@{name} if there was a single intelligent thought in your head it would have died from loneliness.',
+        f'@{name} I want you to be the pallbearer at my funeral so you can let me down one last time.',
+        f'@{name} you are the human embodiment of an eight-dollar haircut.',
+        f'@{name} you\'re so inbred you\'re a sandwich.'
     ]
 
     if message.content == 'roast me!':
