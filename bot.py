@@ -75,4 +75,4 @@ async def on_error(event, *args, **kwargs):
             raise
 
 
-client.run(TOKEN)
+bot.run(TOKEN)
