@@ -15,13 +15,12 @@ intents = discord.Intents.default()
 intents.members = True  # Subscribe to the privileged members intent.
 bot = commands.Bot(command_prefix='!', intents=intents)
 
-client = discord.Client(intents=intents)
 
-@client.event
+@bot.event
 async def on_ready():
-    guild = discord.utils.get(client.guilds, name=GUILD)
+    guild = discord.utils.get(bot.guilds, name=GUILD)
     print(
-        f'{client.user.name} is connected to the following guild:\n'
+        f'{bot.user.name} is connected to the following guild:\n'
         f'{guild.name}(id: {guild.id})'
     )
 
@@ -29,7 +28,7 @@ async def on_ready():
     print(f'Guild Members:\n - {members}')
 
 
-@client.event
+@bot.event
 async def on_member_join(member):
     await member.create_dm()
     await member.dm_channel.send(
@@ -37,9 +36,9 @@ async def on_member_join(member):
     )
 
 
-@client.event
+@bot.event
 async def on_message(message):
-    if message.author == client.user:
+    if message.author == bot.user:
         return
 
     name = message.author.mention
@@ -67,7 +66,7 @@ async def on_message(message):
     elif message.content == 'raise-exception':
         raise discord.DiscordException
 
-@client.event
+@bot.event
 async def on_error(event, *args, **kwargs):
     with open('err.log', 'a') as f:
         if event == 'on_message':
