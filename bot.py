@@ -56,7 +56,8 @@ async def on_message(message):
         f'@{name} if there was a single intelligent thought in your head it would have died from loneliness.',
         f'@{name} I want you to be the pallbearer at my funeral so you can let me down one last time.',
         f'@{name} you are the human embodiment of an eight-dollar haircut.',
-        f'@{name} you\'re so inbred you\'re a sandwich.'
+        f'@{name} you\'re so inbred you\'re a sandwich.',
+        f'If I had a gun, with two bullets, and I was in a room with Hitler, Bin Laden and @{name}, I would shoot @{name} twice.'
     ]
 
     if message.content == 'roast me!':
