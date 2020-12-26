@@ -35,7 +35,6 @@ async def on_member_join(member):
         f'Hi {member.name}, welcome to my Discord server!'
     )
 
-
 @bot.command(name='roast_me', help='Jarvis coming in hot to roast you.')
 async def roast_initiated(ctx):
     if ctx.author == bot.user:
@@ -70,6 +69,17 @@ async def roll(ctx, number_of_dice: int, number_of_sides: int):
         for _ in range(number_of_dice)
     ]
     await ctx.send(', '.join(dice))
+
+
+@bot.command(name='hello', help='Sends greeting back.')
+async def reply_greeting(ctx):
+    if ctx.author == bot.user:
+        return
+    
+    name = ctx.author.mention
+
+    response = f'Hello {name}!'
+    await ctx.send(response)
 
 
 bot.run(TOKEN)
