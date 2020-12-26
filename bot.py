@@ -44,11 +44,11 @@ async def roast_initiated(ctx):
     name = ctx.author.mention
 
     roasts = [
-        f'It’s nice to see such a diverse crowd here today. We’ve got Indians, Jews, Whites, and whatever the fuck {name} is.', 
-        f'{name} you\'re looking pretty rough this evening. You look like if sweatpants were a person.', 
-        f'{name} you\'re my favorite person besides every other person I\'ve ever met.', 
-        f'{name} I envy people who have never met you.', 
-        f'{name} if you were an inanimate object, you’d be a participation trophy.', 
+        f'It’s nice to see such a diverse crowd here today. We’ve got Indians, Jews, Whites, and whatever the fuck {name} is.',
+        f'{name} you\'re looking pretty rough this evening. You look like if sweatpants were a person.',
+        f'{name} you\'re my favorite person besides every other person I\'ve ever met.',
+        f'{name} I envy people who have never met you.',
+        f'{name} if you were an inanimate object, you’d be a participation trophy.',
         f'{name} you are a pizza burn on the roof of the world\'s mouth.',
         f'{name} if genius skips a generation, your children will be brilliant.',
         f'{name} you have the charm and charisma of a burning orphanage.',
@@ -70,36 +70,6 @@ async def roll(ctx, number_of_dice: int, number_of_sides: int):
         for _ in range(number_of_dice)
     ]
     await ctx.send(', '.join(dice))
-
-
-@bot.command(name='create-channel')
-@commands.has_role('admin')
-async def create_channel(ctx, channel_name='real-python'):
-    guild = ctx.guild
-    existing_channel = discord.utils.get(guild.channels, name=channel_name)
-    if not existing_channel:
-        print(f'Creating a new channel: {channel_name}')
-        await guild.create_text_channel(channel_name)
-
-@bot.event
-async def on_command_error(ctx, error):
-    if isinstance(error, commands.errors.CheckFailure):
-        await ctx.send('You do not have the correct role for this command.')
-
-@bot.event
-async def on_message(message):
-    if message.author == bot.user:
-        return
-    if 'hello' in message.content.lower():
-        await message.channel.send(f'Hello! {message.author.mention}')
-
-@bot.event
-async def on_error(event, *args, **kwargs):
-    with open('err.log', 'a') as f:
-        if event == 'on_message':
-            f.write(f'Unhandled message: {args[0]}\n')
-        else:
-            raise
 
 
 bot.run(TOKEN)
