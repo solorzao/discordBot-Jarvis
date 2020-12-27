@@ -32,7 +32,7 @@ async def on_ready():
 async def on_member_join(member):
     await member.create_dm()
     await member.dm_channel.send(
-        f'Hi {member.name}, welcome to my Discord server!'
+        f'Hi {member.name}, welcome to my Discord server! You can type "!help" at anytime in the server to pull up a list of things I can help you with it, enjoy your stay!'
     )
 
 
@@ -44,7 +44,6 @@ async def roast_initiated(ctx):
     name = ctx.author.mention
 
     roasts = [
-        f'It’s nice to see such a diverse crowd here today. We’ve got Indians, Jews, Whites, and whatever the fuck {name} is.',
         f'{name} you\'re looking pretty rough this evening. You look like if sweatpants were a person.',
         f'{name} you\'re my favorite person besides every other person I\'ve ever met.',
         f'{name} I envy people who have never met you.',
