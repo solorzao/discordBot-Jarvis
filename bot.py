@@ -70,6 +70,17 @@ async def roll(ctx, number_of_dice: int, number_of_sides: int):
     ]
     await ctx.send(', '.join(dice))
 
+@bot.command(name='random_number_range', help='Gives you back a random number in between your range')
+async def roll(ctx, number1: int, number2: int):
+    if number1 < number2:
+        response = random.randrange(number1, number2)
+    elif number1 > number2:
+        response = random.randrange(number2, number1)
+    else:
+        response = 'Error, does not compute, please try again with numbers that have a valid range.'
+
+    await ctx.send(response)
+
 
 @bot.command(name='hello', help='Sends greeting back.')
 async def reply_greeting(ctx):
