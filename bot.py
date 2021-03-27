@@ -1,7 +1,7 @@
 # bot.py
 import os
 import random
-
+import pandas
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -70,7 +70,7 @@ async def roll(ctx, number_of_dice: int, number_of_sides: int):
     ]
     await ctx.send(', '.join(dice))
 
-@bot.command(name='random_number_range', help='Gives you back a random number in between your range')
+@bot.command(name='random_number_range', help='Gives you back a random number in between your range.')
 async def roll(ctx, number1: int, number2: int):
     if number1 < number2:
         response = random.randrange(number1, number2)
@@ -90,6 +90,21 @@ async def reply_greeting(ctx):
     name = ctx.author.mention
 
     response = f'Hello {name}!'
+    await ctx.send(response)
+
+@bot.command(name='add_point', help='Adds channel point to user profile.')
+async def add_point(ctx):
+    entry = pandas.DataFrame(columns=['username', 'points'])
+
+    entry = entry.append({'username': ctx.author,
+                            'points': 1}, ignore_index=True)
+
+    fileLocation = "C:\Users\Oliver\Desktop\channel_points.csv"
+    entry.to_csv(fileLocation)
+
+    name = ctx.author.mention
+
+    response = f'{name} Succesfully added point!'
     await ctx.send(response)
 
 
