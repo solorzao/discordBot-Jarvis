@@ -99,7 +99,7 @@ async def add_point(ctx):
     entry = entry.append({'username': ctx.author,
                             'points': 1}, ignore_index=True)
 
-    fileLocation = "C:\Users\Oliver\Desktop\channel_points.csv"
+    fileLocation = "channel_points.csv"
     entry.to_csv(fileLocation)
 
     name = ctx.author.mention
